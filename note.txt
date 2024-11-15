@@ -1,0 +1,13 @@
+the first real step in making a progressive web app is to create a web app manifest file.
+
+the web app manifest file is a single JSON file which is going to provide information about our app to the browser. things like the name of the application or the home screen icon for mobiles or color theme or something else like that. so browser can take all this information and it's going to know how to display our app properly on a mobile when it's installed onto it. pwa can be installed once in a mobile just like a regular native app company.
+
+to create the web app manifest file, in the root of application, we create a file called manifest.json, and we are going to call this manifest.json. that name is compulsory the browser is going to look for this file.
+
+web app manifest docs and its members: 
+https://developer.mozilla.org/en-US/docs/Web/Manifest 
+https://web.dev/articles/add-manifest 
+
+the name manifest member is going to show when user click on the application on the splash screen while the application loads in a mobile.
+
+the short_name manifest member is going to be the name that displays underneath the icon on the home screen when someone installs the pwa application.
