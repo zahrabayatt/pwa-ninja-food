@@ -1,37 +1,7 @@
-Service Workers Lifecycle:
+See the list of browsers that support service workers:
+https://caniuse.com/serviceworkers
 
-when we create a service worker it goes through a specific life cycle.
+service workers API: 
+https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API
 
-we create a service worker javascript file in root of our application called sw.js. we create it in the root directory of the application because that gives it a scope of our entire site a global scope if you like, meaning later on it can access all the different files in the site.
-
-if we create a service worker javascript file in a sub directory, then its scope would be only in that sub directory and it could only access files and controls files inside that sub directory.
-
-the first step when we create a service worker is to register it with the browser. now we do this from our normal javascript file which in this application is app.js and not form a service worker javascript file itself.
-this is telling the browser that certain javascript file sw.js should be register as a service worker and put onto that separate service worker thread.
-
-so when we do this, the browser fires the install event which is the browser basically installing the service worker. now the install event is a life cycle event and we can listen to this life cycle event inside the sw.js itself and then we can react to it in some way when it happens if we wanted to. 
-
-for example we can start listening fro when the install event fires and at that point we could do some asset caching, so that later on we could access those assets that we cached when were offline, we won't need a connection to get them.
-
-so the install even is a life cycle even that fires once the server workers register. and then some pont after the service worker is installed, it becomes active, now that point browser fires an active event which it is a life cycle event that we can also listen to and react to if we want inside the service worker javascript file.
-
-at this point once the service worker is active, it can access all the different pages and all the different files inside its scope. and in this application because we put the sw.js in root directory, it can access to all pages in the application and it can listen for all these different fetch events that happens or Http requests if we want and it can intercept them if needed.
-
-
-service worker lifecycle diagram:
-
-1- register the service worker (sw.js)
-2- install event fires
-3- service worker becomes active
-4- active event fires
-5- service worker 'listens' for events
-
-
-at some point imagine that we reloaded the page, does the service worker go through exactly the same life cycle every time we do that?
-
-no, when we refresh the page, the service worker still registered, because that happens inside of app.js.
-but it only reinstalls the service workers if the code inside the service worker file has changed since the last time it was installed in the browser.
-if there is a change to service worker file then it will reinstall it. now that does mean it also activates the new service worker and replaces the old one completely? 
-no, the new service worker is installed when we reload the page but it stops and it remains in waiting to be activated. meanwhile the old service worker is going to continue to be active by default and the new server worker is only become active after all instances of our app is closed. now that could be all the tabs that we have open in a browser or just the app themselves on mobiles and then when it's reopened at that point the browser will take the new service worker that's in waiting and it's going to activate it. 
-now it does this because after we make a change to our service worker file the page initially loads with that older version of the service worker installed and on that web page load in the older version controlling the app so after the page loads the browser also starts to install the new service worker which make take a small amount of time to complete. if after it was installed it activated the new version automatically without page refresh it means directly swapping out our old service worker version for a new one midway through our app loading or lose interacting with the app and this could result in breaking changes.
-that's why we have a specific life cycle of events. and the new version of service worker remains waiting because the old version might be in midway of doing something and changing to newer version make the service worker lose the interactivity with the app until it changed and because of all these problems that might happens we have this lifecycle! and the newer version of service worker when we restart the app (close all tabs and reopen) that becomes active from the very start.
+service workers only work on pages where they're served over a secure HTTPS connection, the localhost is not HTTPS but that is a exception to the rule and it's the exception so that we can easily develop app using service workers but this is important when it comes to deploying your application. the logic behind this is that service worker is very powerful, they can intercept requests made by the browser so they need to be secure.
