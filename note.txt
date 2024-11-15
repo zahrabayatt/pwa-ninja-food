@@ -1,1 +1,16 @@
-some of the manifest properties like icons, theme_color not supported in ios devices, to correct this we add a link tag to our html.
+Service Workers: 
+
+they are the beating hearts of progressive web app applications. they allow us to do all of the different things that you would expect form a modern app that runs on a mobile device such as:
+
+- load content offline: so you can still open and view the app without internet connection by using cached assents and data.
+- use background sync: so that if a user tries to perform an action while they're offline normally requires a connection for example posting a status update then it will perform the action in the background when a connection is re-established and that's really awesome.
+- use push notifications: so that our app can notify users on a device of something for example new content, reminders or new messages they might have on the app.
+- they can listen to life cycle events
+
+so these are some kind of things that service Workers allow us to do, but what exactly are they?
+
+in simple terms, they are just javascript files but they're not the kind of javascript files that you're probably used writing for your websites. 
+when you create some kind of website you might have a mix of html css and javascript files and you upload those files to a server when you request them by going to the web address, we see them in the browser. and the javascript file runs in a single thread (main thread) inside the browser which is tightly coupled with the html page and it can access the dom an manipulate page content, so this connection between the javascript file and the dom content is quite strong, it's coupled together. now when we create a service worker javascript file, it doesn't run on the same thread as our regular javascript files. it runs on a different thread in another part of the browser isolated away form the html page, now because of that it doesn't have access to the dom and we can not directly read, change or remove page content, instead our service Workers have a different job to do. the service workers run in the background, they are background process. they even carry on running in the background when our app closes whether that be closing a browser tab or the whole application in a mobile device. now their job is to handle the app like functionality by listening and reacting to events which occur in the browsers such as push notifications made from the server to the browsers or fetch http requests made by the browsers for example to get an image or css or something else and this is their job. 
+
+so service workers runs in the background, listening for these different events and then it can react or do something when an event occurs. they run on the separate thread and they do not access to the dom and they sit in the background listening for events and then can react to these different events.
+
