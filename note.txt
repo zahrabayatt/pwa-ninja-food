@@ -1,7 +1,0 @@
-See the list of browsers that support service workers:
-https://caniuse.com/serviceworkers
-
-service workers API: 
-https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API
-
-service workers only work on pages where they're served over a secure HTTPS connection, the localhost is not HTTPS but that is a exception to the rule and it's the exception so that we can easily develop app using service workers but this is important when it comes to deploying your application. the logic behind this is that service worker is very powerful, they can intercept requests made by the browser so they need to be secure.
