@@ -1,0 +1,15 @@
+one of the best things about pwa is their ability to be used offline without internet connection.
+
+we can emulate this offline behavior by either clicking the offline option in service workers in the application tab of the devtool or in the network tab of dev tool you can select offline option.
+
+after enable offline option, if we reload the page we got the no internet result in browser. the pwa is going to be great in these cases because they are going to have teh ability to load content offline, so that we'd still see something in the browser instead of the no internet result.
+
+how does the pwa do that? 
+at the heart of it is going to be the cache API and we have a cache storage in application tab in devtool. in the nutshell if we cache something we store it away somewhere for later to use like when we offline.
+
+the problem with that cache is that we don't directly control it or we don't tell if what to store and what not to store. it kind of just manages itself, so it's not overly reliable. so we disable it by check the disable cache option in network tab in devtool. 
+the second type of cash is one which can be controlled by us with service workers and the regular JS and this is the type of cache that we'll be using, because it's going to give us ultimate control over what we want to store in the cache and then we can retrieve it when we need it.
+
+one of the benefit to pre cache assets using service worker beside the good experience in offline mode or when connection is bad, is that we can load assets quicker than a round-trip from the server and make the performance better.
+
+watch this video about offline mode explanation in pwa: https://www.youtube.com/watch?v=Vz1D28zshaI
