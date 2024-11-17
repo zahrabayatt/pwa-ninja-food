@@ -1,0 +1,5 @@
+pwa is made up of several different things and we need to implement them all together to make our pwa valid.
+
+chrome dev tools gives us a way to audit our application using the lighthouse plugin which essentially gives us a checklist of required actions to make our site invalid pwa.
+
+Debug Progressive Web Apps : https://developer.chrome.com/docs/devtools/progressive-web-apps
