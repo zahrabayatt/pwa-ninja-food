@@ -11,6 +11,7 @@ const assets = [
   "img/dish.png",
   "https://fonts.googleapis.com/icon?family=Material+Icons",
   "https://fonts.gstatic.com/s/materialicons/v142/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2",
+  "/pages/fallback.html",
 ];
 
 // listening to install service worker event
@@ -29,7 +30,7 @@ self.addEventListener("activate", (event) => {
     caches.keys().then((keys) => {
       return Promise.all(
         keys
-          .filter((key) => key !== staticCacheName)
+          .filter((key) => key !== staticCacheName && key !== dynamicCacheName)
           .map((key) => caches.delete(key))
       );
     })
@@ -39,21 +40,20 @@ self.addEventListener("activate", (event) => {
 // listening to fetch event
 self.addEventListener("fetch", (event) => {
   event.respondWith(
-    caches.match(event.request).then((cacheRes) => {
-      return (
-        cacheRes ||
-        fetch(event.request).then((fetchRes) => {
-          return caches.open(dynamicCacheName).then((cache) => {
-            // when we wanted to add all of the assets, we used the addAll/ add method and we're going out to the server and get the response which is resource or asset but here we're not going out to the server and we have the response and asset and we need to put it inside the cache!
-            // put get two arguments:
-            // 1- request url which is key of the cache item
-            // 2- response which n this case is asset
-            // we need to put a copy of fetch response then we be able to use it in browser to show it.
-            cache.put(event.request.url, fetchRes.clone());
-            return fetchRes;
-          });
-        })
-      );
-    })
+    // if the caches.match or fetch() method fails because it returns result it is going be cached in the match method.
+    caches
+      .match(event.request)
+      .then((cacheRes) => {
+        return (
+          cacheRes ||
+          fetch(event.request).then((fetchRes) => {
+            return caches.open(dynamicCacheName).then((cache) => {
+              cache.put(event.request.url, fetchRes.clone());
+              return fetchRes;
+            });
+          })
+        );
+      })
+      .catch(() => caches.match("/pages/fallback.html"))
   );
 });
