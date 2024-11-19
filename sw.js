@@ -40,7 +40,6 @@ self.addEventListener("activate", (event) => {
 // listening to fetch event
 self.addEventListener("fetch", (event) => {
   event.respondWith(
-    // if the caches.match or fetch() method fails because it returns result it is going be cached in the match method.
     caches
       .match(event.request)
       .then((cacheRes) => {
@@ -54,6 +53,11 @@ self.addEventListener("fetch", (event) => {
           })
         );
       })
-      .catch(() => caches.match("/pages/fallback.html"))
+      .catch(() => {
+        if (event.request.url.indexOf(".html") !== -1) {
+          return caches.match("/pages/fallback.html");
+        }
+        // we can check for other type of request and return dummy cached for example for requesting images return some kind of dummy cached fallback image.
+      })
   );
 });
