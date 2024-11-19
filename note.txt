@@ -1,4 +1,0 @@
-for enable a good offline experience, we know that we want to cache creatine resources that our app is going to use.
-
-what resources do we actually need to cache?
-at the very lease should be caching the core resources that make up the user interface of our web app, static assets like if we had a logo we could cache that because that's going to be the same on every page,... this is known as the app shell and it will probably be very similar on every page of our app, the assets that don't really change that much over time.
