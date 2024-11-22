@@ -1,3 +1,1 @@
-Firebase Database Realtime Data: https://www.youtube.com/watch?v=JP3L0jIXvrY
-
-docs: https://firebase.google.com/docs/web/modular-upgrade?authuser=0#window-compat
+Firebase Database Updating the UI: https://www.youtube.com/watch?v=ezNvFzc0f30
