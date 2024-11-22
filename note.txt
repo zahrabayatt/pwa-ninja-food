@@ -1,3 +1,3 @@
-Firebase Database Explanation: https://youtu.be/ZfL61cOUImw?si=1QZXTzjOT-VQN5uj
+Firebase Database Realtime Data: https://www.youtube.com/watch?v=JP3L0jIXvrY
 
-we use cloud firebase that comes with offline support which is perfect for our PWA meaning that it will allow users to view data when they're offline as well as online and fireStore takes care of all of that offline data for us we don't really have to do much at all. it does this by interacting with that index DB, the browser's built-in database, it stores data for us so that when we go offline we can still access it. 
+docs: https://firebase.google.com/docs/web/modular-upgrade?authuser=0#window-compat
