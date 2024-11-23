@@ -19,6 +19,7 @@ db.collection("recipes").onSnapshot((snapshot) => {
 
     if (change.type === "removed") {
       // remove the document data from the web page
+      removeRecipe(change.doc.id);
     }
   });
 });

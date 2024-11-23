@@ -45,3 +45,19 @@ form.addEventListener("submit", (event) => {
   form.title.value = "";
   form.ingredients.value = "";
 });
+
+// delete a recipe
+const recipeContainer = document.querySelector(".recipes");
+recipeContainer.addEventListener("click", (event) => {
+  // console.log(event);
+  if (event.target.tagName === "I") {
+    const id = event.target.getAttribute("data-id");
+    db.collection("recipes").doc(id).delete();
+  }
+});
+
+// remove recipe from dom
+const removeRecipe = (id) => {
+  const recipe = document.querySelector(`.recipe[data-id=${id}]`);
+  recipe.remove();
+};

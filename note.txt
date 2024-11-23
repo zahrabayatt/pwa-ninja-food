@@ -1,1 +1,9 @@
-Firebase Database, Adding Recipes explanation: https://www.youtube.com/watch?v=BHCk5TSNUkI
+Firebase Database, Removing Recipes explanation: https://www.youtube.com/watch?v=zdb8_a0DXTg 
+
+For removing recipes, there is a couple of ways we could do this the first way is to attach an event listener to each one of these delete icons and when we click that icon, it delete the recipe but we don't do  this for two reasons:
+
+1- the first reason is that it means we're gonna have to attach an event listener to every single icon on the page and if there were a lot of recipes then that is quit a costly thing to do and it's not great for performance
+
+2- the second reason is that when we add a new recipe it means that we're then also going to have to attach a new event listener to the new trash icon on that new recipe
+
+instead we're going to use event delegation and what that means is we're going to attach just one event listener to div that is recipes container, if we click anywhere inside that div, it's going to fire a callback function and inside that callback function, we're going to check if we actually clicked a delete icon, if the event source was a delete icon then we'll delete that recipe. 
